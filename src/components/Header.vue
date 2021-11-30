@@ -4,6 +4,7 @@
       type="text"
       placeholder="search a movie"
       v-model.trim="searchText"
+      @keyup.enter="$emit('search', searchText)"
       >
 
       <button @click="$emit('search', searchText)">Search</button>
