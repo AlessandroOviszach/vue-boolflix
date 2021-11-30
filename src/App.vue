@@ -16,12 +16,30 @@ export default {
     Header,
   },
 
+  data() {
+    return {
+      movieList: [],
+    }
+  },
+
   methods: {
     performSearch(searchText) {
       // console.log(searchText);
 
       if (searchText !== '') {
-        axios.get()
+        console.log(searchText);
+        axios.get('https://api.themoviedb.org/3/search/movie', {
+          params: {
+            api_key: 'f152fb9c2f42244ef45377bb1c3f3ca3',
+            query: searchText,
+            language: 'it-IT'
+          }
+        })
+        .then( result => {
+          this.movieList = [];
+          this.movieList = result.data.results;
+        })
+        .catch( err => console.log(err) )
       }
     }
   }

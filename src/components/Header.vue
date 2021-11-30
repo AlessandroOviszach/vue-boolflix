@@ -3,7 +3,7 @@
       <input
       type="text"
       placeholder="search a movie"
-      v-model="searchText"
+      v-model.trim="searchText"
       >
 
       <button @click="$emit('search', searchText)">Search</button>
