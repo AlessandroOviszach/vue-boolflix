@@ -4,6 +4,8 @@
 
     <main>
       <CardList :list='movieList' />
+      <CardList :list='tvList' />
+
     </main>
   </div>
 
@@ -25,25 +27,37 @@ export default {
   data() {
     return {
       movieList: [],
+      tvList: [],
     }
   },
 
   methods: {
     performSearch(searchText) {
-      // console.log(searchText);
+      const apiParams = {
+        api_key: 'f152fb9c2f42244ef45377bb1c3f3ca3',
+        query: searchText,
+        language: 'it-IT',
+      }
 
       if (searchText !== '') {
-        console.log(searchText);
+        // console.log(searchText);
         axios.get('https://api.themoviedb.org/3/search/movie', {
-          params: {
-            api_key: 'f152fb9c2f42244ef45377bb1c3f3ca3',
-            query: searchText,
-            language: 'it-IT'
-          }
+          params: apiParams,
         })
         .then( result => {
           this.movieList = [];
           this.movieList = result.data.results;
+        })
+        .catch( err => console.log(err) )
+      
+
+
+        axios.get('https://api.themoviedb.org/3/search/tv', {
+          params: apiParams,
+        })
+        .then( result => {
+          this.tvList = [];
+          this.tvList = result.data.results;
         })
         .catch( err => console.log(err) )
       }

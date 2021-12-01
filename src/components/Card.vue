@@ -1,11 +1,18 @@
 <template>
     <div class="card">
+        <img v-if='poster'
+        :src="`https://image.tmdb.org/t/p/w342${poster}`" 
+        alt=""
+        >
+        <img v-else src="https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg" :alt="title">
+
         <ul>
             <li>Titolo: {{ title }} </li>
             <li>Titolo Originale: {{ originaltitle }} </li>
             <li>
                 Lingua :
-                <img v-if='availableFlags.includes(language)'
+                <img class="flag"
+                v-if='isFlag'
                     :src="require(`../assets/${language}.png`)"
                     :alt="language"
                 >
@@ -20,6 +27,7 @@
 export default {
     name : 'Card',
     props : {
+        poster : String,
         title : String,
         originaltitle : String,
         language : String,
@@ -29,15 +37,20 @@ export default {
     data() {
         return {
             availableFlags : ['it', 'en'],
-    }
-  }
+        }
+    },
+    computed: {
+        isFlag() {
+            return this.availableFlags.includes(this.language);
+        }
+    },
 }
 </script>
 
 <style scoped lang='scss'>
 .card {
-    img {
+    .flag {
         width: 30px;
     }
-}
+}      
 </style>
