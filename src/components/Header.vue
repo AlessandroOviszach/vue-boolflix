@@ -1,6 +1,14 @@
 <template>
   <header>
-    <img src="@\assets\boolflix-logo.png" alt="">
+    <div class="logo-container">
+      <img 
+      class="logo" 
+      src="..\assets\boolflix-logo.png" 
+      alt="Boolflix logo"
+      >
+    </div>
+    
+
     <div>
       <input
       type="text"
@@ -34,6 +42,14 @@ export default {
     display: flex;
     justify-content: space-between;
 
+    .logo-container {
+      width: 150px;
+      margin-left: 1rem;
+      .logo {
+        width: 100%;
+      }
+    }
+
     div {
       margin-right: 5rem;
       height: 100%;
@@ -43,7 +59,6 @@ export default {
         margin: 0 2rem;
         width: 300px;
       }
-
       button {
         padding: 0 1rem;
       }
